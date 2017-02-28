@@ -1,0 +1,30 @@
+{
+    "name": "alex/piwi-framework",
+    "description": "The \"Piwi\" Framework. Version 0.1",
+    "type": "project",
+    "keywords": ["piwi", "framework"],
+    "license": "MIT",
+    "authors": [
+      {
+        "name": "Aleksandar Kolakov",
+        "email": "alex@kolakov.com",
+        "role": "Developer"
+      }
+    ],
+    "autoload" : {
+      "psr-4": {
+        "Piwi\\": "/"
+      }
+    },
+    "require": {
+      "php": ">=5.5",
+      "twig/twig":"~1.0",
+      "symfony/debug": "v3.2.0"
+    },
+    "require-dev": {
+    },
+    "scripts": {
+      "post-install-cmd": [],
+      "post-update-cmd": []
+    }
+}
