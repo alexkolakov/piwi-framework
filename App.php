@@ -216,7 +216,47 @@ class App
      */
     private function validateConfig($config)
     {
-        return [];
+        $ret = [];
+        if(!isset($config['display_exceptions']))
+            $ret[] = 'display_exceptions';
+
+        if(!isset($config['templates_dir']))
+            $ret[] = 'templates_dir';
+
+        if(!isset($config['templates_dir_cache']))
+            $ret[] = 'templates_dir_cache';
+
+        if(!isset($config['twig_extensions']))
+            $ret[] = 'twig_extensions';
+
+        if(!isset($config['session']['name']))
+            $ret[] = 'session:name';
+
+        if(!isset($config['session']['lifetime']))
+            $ret[] = 'session:lifetime';
+
+        if(!isset($config['session']['path']))
+            $ret[] = 'session:path';
+
+        if(!isset($config['session']['domain']))
+            $ret[] = 'session:domain';
+
+        if(!isset($config['session']['secure']))
+            $ret[] = 'session:secure';
+
+        if(!isset($config['db']['connection_uri']))
+            $ret[] = 'db:connection_uri';
+
+        if(!isset($config['db']['username']))
+            $ret[] = 'db:username';
+
+        if(!isset($config['db']['password']))
+            $ret[] = 'db:password';
+
+        if(!isset($config['db']['pdo_options']))
+            $ret[] = 'db:pdo_options';
+
+        return $ret;
     }
 
     /**

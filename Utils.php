@@ -28,7 +28,7 @@ class Utils
     public static function Init($webFolder)
     {
         if (self::$_instance == null)
-            self::$_instance = new self();
+            self::$_instance = new self($webFolder);
 
         return self::$_instance;
     }
