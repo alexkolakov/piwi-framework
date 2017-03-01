@@ -5,29 +5,19 @@ namespace Piwi;
 
 class Request
 {
-    /**
-     * @var Request|null
-     */
+    /** @var Request|null */
     private static $_instance = null;
 
-    /**
-     * @var array
-     */
+    /** @var array */
     private $get = [];
 
-    /**
-     * @var array
-     */
+    /** @var array */
     private $post = [];
 
-    /**
-     * @var array
-     */
+    /** @var array */
     private $cookies = [];
 
-    /**
-     * @var array
-     */
+    /** @var array */
     private $server = [];
 
     private function __construct() 
@@ -236,11 +226,21 @@ class Request
         return self::$_instance;
     }
 
+    /**
+     * Get Scheme
+     *
+     * @return mixed|null
+     */
     public function getScheme()
     {
         return $this->server('REQUEST_SCHEME', null, 'http');
     }
 
+    /**
+     * Get Host
+     *
+     * @return mixed|null
+     */
     public function getHost()
     {
         return $this->server('HTTP_HOST');

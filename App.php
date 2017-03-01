@@ -6,7 +6,7 @@ use Symfony\Component\Debug\ExceptionHandler;
 
 class App
 {
-    const ERROR_CONTROLLER = 'KiwiApp\\Controllers\Error';
+    const ERROR_CONTROLLER = 'PiwiApp\\Controllers\Error';
     const ERROR_ACTION = 'show';
 
     private static $instance;
@@ -23,12 +23,6 @@ class App
     protected $controller;
     protected $action;
 
-    /**
-     * Initialize App
-     *
-     * @param string $webFolder
-     * @throws \Exception
-     */
     private function __construct($webFolder)
     {
         $this->kernelFolder = dirname(__FILE__) . DIRECTORY_SEPARATOR;
@@ -37,6 +31,13 @@ class App
         $this->routesPath   = realpath($this->webFolder . '/../routes.php');
     }
 
+
+    /**
+     * Initialize App
+     *
+     * @param string $indexPath
+     * @return App
+     */
     public static function Init($indexPath)
     {
         if (self::$instance == null)
@@ -45,6 +46,9 @@ class App
         return self::$instance;
     }
 
+    /**
+     * Run the app
+     */
     public function run()
     {
         $uri = $this->getURI();
@@ -57,6 +61,12 @@ class App
         $this->dispatch($uri);
     }
 
+    /**
+     * Dispatch the request
+     *
+     * @param string $uri
+     * @throws \Exception
+     */
     private function dispatch($uri)
     {
         $uri = '/' . ltrim($uri, '/');
@@ -138,11 +148,22 @@ class App
             throw new \Exception('The ' . $this->action . ' action is not implemented yet', 501);
     }
 
+    /**
+     * Get utils
+     *
+     * @return Utils
+     */
     public function getUtils()
     {
         return Utils::Init($this->webFolder);
     }
 
+    /**
+     * Get config
+     *
+     * @return mixed|null
+     * @throws \Exception
+     */
     public function getConfig()
     {
         if($this->configPath && file_exists($this->configPath)) {
@@ -160,6 +181,11 @@ class App
         return null;
     }
 
+    /**
+     * Get routes
+     *
+     * @return mixed|null
+     */
     public function getRoutes()
     {
         if($this->routesPath && file_exists($this->routesPath)) {
@@ -277,7 +303,6 @@ class App
                     call_user_func_array([$errorController, self::ERROR_ACTION], [null]);
                 else
                     echo '<h1>' . $ex->getCode() . '</h1>';
-                echo call_user_func_array(["PiwiApp\\Controllers\\Error", "show"], [null]);
             }
 
             else
@@ -287,6 +312,11 @@ class App
         exit;
     }
 
+    /**
+     * Get request
+     *
+     * @return mixed
+     */
     public function getRequest()
     {
         return $this->request;

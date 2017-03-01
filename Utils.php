@@ -6,9 +6,14 @@ class Utils
 {
     /** @var  Request */
     protected $request;
+
+    /** @var mixed|null */
     protected $routes;
+
+    /** @var mixed|null  */
     protected $config;
 
+    /** @var Utils|null  */
     private static $_instance = null;
 
     private function __construct($webFolder)
@@ -143,6 +148,12 @@ class Utils
         header($string, (bool)$replace, $httpResponseHeader);
     }
 
+    /**
+     * Get absolute path
+     *
+     * @param string $path
+     * @return string
+     */
     public function getAbsolutePath($path)
     {
         $slashStarts = strpos($path, '/') === 0;
@@ -166,6 +177,12 @@ class Utils
         return ($slashStarts ? '/' : '') . $absolutePath;
     }
 
+    /**
+     * Header Status
+     *
+     * @param int $code
+     * @return bool
+     */
     public static function headerStatus($code)
     {
         if(!isset($_SERVER['SERVER_PROTOCOL']))

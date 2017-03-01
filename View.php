@@ -86,6 +86,13 @@ class View
         return null;
     }
 
+    /**
+     * Render the template
+     *
+     * @param string $name
+     * @param array $context
+     * @return mixed
+     */
     public function render($name, $context = [])
     {
         return $this->twig->render($name, $context);
