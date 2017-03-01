@@ -156,7 +156,7 @@ class App
 
             $missingConfigParams = $this->validateConfig($config);
 
-            if(count($missingConfigParams) == 0) {
+            if(count($missingConfigParams) > 0) {
                 throw new \Exception('Missing Config params', 500);
             }
 
