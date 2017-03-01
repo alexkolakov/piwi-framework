@@ -59,7 +59,7 @@ class App
 
     private function dispatch($uri)
     {
-        $uri = '/' . $uri;
+        $uri = '/' . ltrim($uri, '/');
 
         $routes = $this->getRoutes();
         $actionParams = null;
