@@ -63,9 +63,6 @@ class App
 
         $routes = $this->getRoutes();
         $actionParams = null;
-        $actionOptions = [
-            'ajax_only' => false
-        ];
 
         if(is_array($routes) && count($routes) > 0)
         {
@@ -89,9 +86,6 @@ class App
                         if(empty($val))
                             unset($actionParams[$key]);
                     }
-
-                    if(isset($params['options']))
-                        $actionOptions = array_merge($actionOptions, $params['options']);
 
                     if((!empty($actionParams) && $patternLast2Chars != '/*')
                         || (empty($actionParams) && $patternLast2Chars == '/*'))
